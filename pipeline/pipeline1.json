@@ -106,9 +106,16 @@
 				]
 			},
 			{
-				"name": "Copy data1",
+				"name": "Copy Accounts",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Copy Contacts",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
