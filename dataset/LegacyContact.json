@@ -1,0 +1,37 @@
+{
+	"name": "LegacyContact",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "firstname",
+				"type": "nvarchar"
+			},
+			{
+				"name": "lastname",
+				"type": "nvarchar"
+			},
+			{
+				"name": "emailaddress",
+				"type": "nvarchar"
+			},
+			{
+				"name": "phone",
+				"type": "nvarchar"
+			},
+			{
+				"name": "contactid",
+				"type": "uniqueidentifier"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "LegacyContact"
+		}
+	}
+}

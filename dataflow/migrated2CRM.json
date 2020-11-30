@@ -1,0 +1,27 @@
+{
+	"name": "migrated2CRM",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "LegacyContact",
+						"type": "DatasetReference"
+					},
+					"name": "LegacyContact"
+				},
+				{
+					"dataset": {
+						"referenceName": "LegacyAccount",
+						"type": "DatasetReference"
+					},
+					"name": "LegacyAccount"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"script": "source(output(\n\t\tfirstname as string,\n\t\tlastname as string,\n\t\temailaddress as string,\n\t\tphone as string,\n\t\tcontactid as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> LegacyContact\nsource(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> LegacyAccount"
+		}
+	}
+}

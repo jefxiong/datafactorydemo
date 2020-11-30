@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy Accounts",
+				"name": "Copy Contacts",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -35,7 +35,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "D365CE_Accounts",
+						"referenceName": "LegacyContact",
 						"type": "DatasetReference"
 					}
 				],
@@ -47,7 +47,34 @@
 				]
 			},
 			{
-				"name": "dataflow1",
+				"name": "Copy Accounts",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "LegacyAccount",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "migrated2CRM",
 				"type": "ExecuteDataFlow",
 				"dependsOn": [],
 				"policy": {
@@ -60,7 +87,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataflow": {
-						"referenceName": "dataflow1",
+						"referenceName": "migrated2CRM",
 						"type": "DataFlowReference"
 					},
 					"compute": {
