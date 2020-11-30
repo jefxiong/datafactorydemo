@@ -19,9 +19,21 @@
 					"name": "LegacyAccount"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"linkedService": {
+						"referenceName": "D365CE",
+						"type": "LinkedServiceReference"
+					},
+					"schemaLinkedService": {
+						"referenceName": "D365CE",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [],
-			"script": "source(output(\n\t\tfirstname as string,\n\t\tlastname as string,\n\t\temailaddress as string,\n\t\tphone as string,\n\t\tcontactid as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> LegacyContact\nsource(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> LegacyAccount"
+			"script": "source(output(\n\t\tfirstname as string,\n\t\tlastname as string,\n\t\temailaddress as string,\n\t\tphone as string,\n\t\tcontactid as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> LegacyContact\nsource(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> LegacyAccount\nLegacyContact sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tentity: '',\n\tformat: 'cdm',\n\tmanifestType: 'manifest',\n\tfolderPath: '',\n\tfileSystem: '',\n\tcolumnDelimiter: ',',\n\tcolumnNamesAsHeader: false,\n\tcorpusPath: '',\n\tcorpusStore: 'adlsgen2',\n\tadlsgen2_fileSystem: '',\n\ttruncate: false,\n\tmapColumn(\n\t\tfirstname\n\t)) ~> sink1"
 		}
 	}
 }
