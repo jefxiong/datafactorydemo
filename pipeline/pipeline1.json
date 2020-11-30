@@ -141,6 +141,17 @@
 						"mappings": [
 							{
 								"source": {
+									"name": "accountid",
+									"type": "Guid",
+									"physicalType": "uniqueidentifier"
+								},
+								"sink": {
+									"name": "accountid",
+									"type": "Guid"
+								}
+							},
+							{
+								"source": {
 									"name": "primarycontactid",
 									"type": "Guid",
 									"physicalType": "uniqueidentifier"
